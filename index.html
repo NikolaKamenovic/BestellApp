@@ -6,15 +6,21 @@
     <title>BestellApp</title>
 
     <link rel="stylesheet" href="./style.css" />
-    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./styles/assets.css">
+    <link rel="stylesheet" href="./styles/basket.css">
+    <link rel="stylesheet" href="./styles/fonts.css">
+    <link rel="stylesheet" href="./styles/standard.css">
+    <script src="./scripts/db.js"></script>
+    <script src="./scripts/template.js"></script>
+    
   </head>
   <body>
     <header>
-      <img src="./img/logo/Logo.png" alt="BestellApp-Logo" />
+      <img src="./assets/img/logo/Logo.png" alt="BestellApp-Logo" />
     </header>
 
     <div class="title-image">
-      <img src="./img/pictures/title-image.jpg" alt="" />
+      <img src="./assets/img/title-image.jpg" alt="" />
     </div>
 
     <div class="text-position">
@@ -33,14 +39,20 @@
       <a href="#">Alkoholische Getränke</a>
     </section>
 
-    <div id="Vorspeisen"></div>
+  <section class="content">
+    <div id="input_Vorspeisen"></div>
+    <div id="input_Hauptgerichte"></div>
+    <div id="input_Dessert"></div>
+    <div id="input_Getränke"></div>
+    <div id="input_AlkoholischeGetränke"></div>
+  </section>  
 
-    <div id="Hauptgerichte"></div>
+  <section class="basket_wrapper">
+    <div class="basket">Warenkorb</div>
+  </section>
 
-    <div id="Dessert"></div>
-
-    <div id="Getränke"></div>
-
-    <div id="AlkoholischeGetränke"></div>
   </body>
+
+    <script src="./script.js"></script>
+
 </html>

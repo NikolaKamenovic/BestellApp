@@ -20,7 +20,7 @@ header img {
 .title-image img{
     object-fit: cover;
     width: 100%;
-    height: 230px;
+    height: 280px;
 }
 
 h1 {
@@ -66,3 +66,56 @@ a {
     font-size: 40px;
     color: orange;
 }
+
+.menu-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .menu-item h3 {
+    margin: 0 0 5px;
+  }
+  .menu-item p {
+    margin: 5px 0;
+  }
+
+  .category-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .category-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .content {
+    width: calc(100% - 308px);
+    padding: 16px;
+  }
+
+  .basket_wrapper {
+    width: 300px;
+    flex-grow: 1;
+    padding: 16px;
+  }
+
+  .basket {
+    width: 100%;
+    height: 400px;
+    background-color: aqua;
+    position: sticky;
+    top: 0;
+  }
+
+  .content_wrapper {
+    gap: 2px;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
