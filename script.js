@@ -14,7 +14,7 @@ const titleImages = {
   AlkoholischeGetränke: './assets/img/alcoholic-drinks.jpg'
 };
 
-function renderCategory(category, containerId, titleImage) {
+function renderCategory(category, containerId, titleImage,) {
   const container = document.getElementById(containerId);
 
   if (!container) {
@@ -26,7 +26,7 @@ function renderCategory(category, containerId, titleImage) {
   let html = `
     <div class="category-header">
       <img src="${titleImage}" alt="Kategorie-Titelbild" class="category-image" />
-      <h2>Vorspeisen</h2>
+      <h2>Titel</h2>
     </div>
   `;
 
@@ -35,7 +35,7 @@ function renderCategory(category, containerId, titleImage) {
     html += `
       <div class="menu-item">
         <h3>${item.name}</h3>
-        <p><strong>Preis:</strong> €${item.price.toFixed(2)}</p>
+        <p>${item.price.toFixed(2)} €</p>
         <p>${item.description}</p>
       </div>
     `;
@@ -50,3 +50,14 @@ renderCategory(Hauptgerichte, 'input_Hauptgerichte', titleImages.Hauptgerichte);
 renderCategory(Dessert, 'input_Dessert', titleImages.Dessert);
 renderCategory(Getränke, 'input_Getränke', titleImages.Getränke);
 renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages.AlkoholischeGetränke);
+
+
+
+
+// To Do's
+// h2 bearbeiten das jeder titel seperat und anderst gerendert wird im HTML
+// Warenkorb einfügen
+// CSS bearbeiten
+// HTML bearbeiten
+// Warenkorb funktionen erstellen
+// Local Storage einbinden

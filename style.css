@@ -1,11 +1,15 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
     background-color: orange;
     padding: 8px;
     font-size: 24px;
@@ -33,19 +37,9 @@ p {
     color: orange;
 }
 
-.text-position {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-
 .link-section {
     background-color: rgba(128, 128, 128, 0.218);
     height: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
 }
 
 .link-section img{
@@ -62,11 +56,6 @@ a {
     color: orange;
 }
 
-.arrow {
-    font-size: 40px;
-    color: orange;
-}
-
 .menu-item {
     border: 1px solid #ddd;
     padding: 10px;
@@ -79,6 +68,7 @@ a {
   }
   .menu-item p {
     margin: 5px 0;
+    color: black;
   }
 
   .category-header {
@@ -115,6 +105,12 @@ a {
   .content_wrapper {
     gap: 2px;
     padding: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+
+  main {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
