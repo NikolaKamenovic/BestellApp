@@ -34,6 +34,7 @@ function renderCategory(category, containerId, titleImage,) {
   category.forEach(item => {
     html += `
       <div class="menu-item">
+        <button>+</button>
         <h3>${item.name}</h3>
         <p>${item.price.toFixed(2)} €</p>
         <p>${item.description}</p>
@@ -61,3 +62,5 @@ renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages
 // HTML bearbeiten
 // Warenkorb funktionen erstellen
 // Local Storage einbinden
+// Footer fertig erstellen
+// Impressum / AGB erstellen für den footer
