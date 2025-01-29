@@ -1,4 +1,4 @@
-let Vorspeisen = [
+  let Vorspeisen = [
     {
       "name": "Tomatensuppe",
       "price": 4.50,
@@ -262,3 +262,5 @@ let Vorspeisen = [
       "description": "Leichtes, obergäriges Bier mit einer milden, süffigen Note. (0,3l)"
     }
   ]
+
+  let warenkorb = [];

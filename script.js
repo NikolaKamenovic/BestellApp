@@ -14,7 +14,16 @@ const titleImages = {
   AlkoholischeGetränke: './assets/img/alcoholic-drinks.jpg'
 };
 
-function renderCategory(category, containerId, titleImage,) {
+// Titel für die einzelnen Gerichte
+const titleDishes = {
+  Vorspeisen: "Vorspeisen",
+  Hauptgerichte: "Hauptgerichte",
+  Dessert: "Dessert",
+  Getränke: "Getränke",
+  AlkoholischeGetränke: "Alkoholische Getränke:"
+}
+
+function renderCategory(category, containerId, titleImage,titleDishes) {
   const container = document.getElementById(containerId);
 
   if (!container) {
@@ -26,7 +35,7 @@ function renderCategory(category, containerId, titleImage,) {
   let html = `
     <div class="category-header">
       <img src="${titleImage}" alt="Kategorie-Titelbild" class="category-image" />
-      <h2>Titel</h2>
+      <h2>${titleDishes}</h2>
     </div>
   `;
 
@@ -34,7 +43,7 @@ function renderCategory(category, containerId, titleImage,) {
   category.forEach(item => {
     html += `
       <div class="menu-item">
-        <button>+</button>
+        <button onclick='addToCart(${JSON.stringify(item)})'>+</button>
         <h3>${item.name}</h3>
         <p>${item.price.toFixed(2)} €</p>
         <p>${item.description}</p>
@@ -46,12 +55,11 @@ function renderCategory(category, containerId, titleImage,) {
   container.innerHTML = html;
 }
 
-renderCategory(Vorspeisen, 'input_Vorspeisen', titleImages.Vorspeisen);
-renderCategory(Hauptgerichte, 'input_Hauptgerichte', titleImages.Hauptgerichte);
-renderCategory(Dessert, 'input_Dessert', titleImages.Dessert);
-renderCategory(Getränke, 'input_Getränke', titleImages.Getränke);
-renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages.AlkoholischeGetränke);
-
+renderCategory(Vorspeisen, 'input_Vorspeisen', titleImages.Vorspeisen, titleDishes.Vorspeisen);
+renderCategory(Hauptgerichte, 'input_Hauptgerichte', titleImages.Hauptgerichte, titleDishes.Hauptgerichte);
+renderCategory(Dessert, 'input_Dessert', titleImages.Dessert, titleDishes.Dessert);
+renderCategory(Getränke, 'input_Getränke', titleImages.Getränke, titleDishes.Getränke);
+renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages.AlkoholischeGetränke, titleDishes.AlkoholischeGetränke);
 
 
 
