@@ -43,7 +43,7 @@ function renderCategory(category, containerId, titleImage,titleDishes) {
   category.forEach(item => {
     html += `
       <div class="menu-item">
-        <button onclick='addToCart(${JSON.stringify(item)})'>+</button>
+        <button onclick='addToBasket(${JSON.stringify(item)})'>+</button>
         <h3>${item.name}</h3>
         <p>${item.price.toFixed(2)} €</p>
         <p>${item.description}</p>
@@ -61,10 +61,71 @@ renderCategory(Dessert, 'input_Dessert', titleImages.Dessert, titleDishes.Desser
 renderCategory(Getränke, 'input_Getränke', titleImages.Getränke, titleDishes.Getränke);
 renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages.AlkoholischeGetränke, titleDishes.AlkoholischeGetränke);
 
+let dishes = [Vorspeisen, Hauptgerichte, Dessert, Getränke, AlkoholischeGetränke];
 
+let warenkorb = [];
+
+// Funktion für button (addToBasket)
+function addToBasket(dishes) {
+  let findDish = warenkorb.find(item => item.id === dishes.id);
+
+  if (findDish) {
+    findDish.amount++; // Menge erhöhen
+  } else {
+    warenkorb.push({ ...dishes, amount: 1 });
+  }
+
+  renderWarenkorb();
+}
+
+// Menge erhöhen oder verringern
+function changeAmount(id, operation) {
+  let dishes = warenkorb.find(item => item.id === id);
+
+  if (dishes) {
+    if (operation === 'plus') {
+      dishes.amount++;
+    }else if (operation === 'minus' && dishes.amount > 1) {
+      dishes.amount--;
+    }
+  }
+
+  renderWarenkorb();
+}
+
+// Gericht aus dem Warenkorb entfernen
+function deleteBasket(id) {
+  warenkorb = warenkorb.filter(item => item.id !== id);
+  renderWarenkorb();
+}
+
+function renderBasket() {
+  let container = document.getElementById('basket-container');
+  container.innerHTML = ''; // Leeren
+
+  warenkorb.forEach(item => {
+    let div = document.createElement('basket-container');
+    div.innerHTML = `${item.name} - ${item.amount} Stück 
+      <button onclick="changeAmount(${item.id}, 'plus')">+</button>
+      <button onclick="changeAmount(${item.id}, 'minus')">-</button>
+      <button onclick="deleteBasket(${item.id})">X</button>`;
+
+    container.appendChild(div);
+  });
+}
+
+// Local Storage
+function save() {
+  localStorage.setItem('warenkorb', JSON.stringify(warenkorb));
+}
+
+function load() {
+  let saved = localStorage.getItem('warenkorb');
+  if (saved) warenkorb = JSON.parse(saved);
+}
 
 // To Do's
-// h2 bearbeiten das jeder titel seperat und anderst gerendert wird im HTML
+
 // Warenkorb einfügen
 // CSS bearbeiten
 // HTML bearbeiten

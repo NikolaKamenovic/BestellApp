@@ -262,5 +262,3 @@
       "description": "Leichtes, obergäriges Bier mit einer milden, süffigen Note. (0,3l)"
     }
   ]
-
-  let warenkorb = [];
