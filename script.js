@@ -43,7 +43,7 @@ function renderCategory(category, containerId, titleImage,titleDishes) {
   category.forEach(item => {
     html += `
       <div class="menu-item">
-        <button onclick='addToBasket(${JSON.stringify(item)})'>+</button>
+        <button onclick="addToCart('${item.name}', ${item.price})">+</button>
         <h3>${item.name}</h3>
         <p>${item.price.toFixed(2)} €</p>
         <p>${item.description}</p>
@@ -61,75 +61,56 @@ renderCategory(Dessert, 'input_Dessert', titleImages.Dessert, titleDishes.Desser
 renderCategory(Getränke, 'input_Getränke', titleImages.Getränke, titleDishes.Getränke);
 renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages.AlkoholischeGetränke, titleDishes.AlkoholischeGetränke);
 
-let dishes = [Vorspeisen, Hauptgerichte, Dessert, Getränke, AlkoholischeGetränke];
+ let basketContainer = [];
 
-let warenkorb = [];
-
-// Funktion für button (addToBasket)
-function addToBasket(dishes) {
-  let findDish = warenkorb.find(item => item.id === dishes.id);
-
-  if (findDish) {
-    findDish.amount++; // Menge erhöhen
-  } else {
-    warenkorb.push({ ...dishes, amount: 1 });
-  }
-
-  renderWarenkorb();
-}
-
-// Menge erhöhen oder verringern
-function changeAmount(id, operation) {
-  let dishes = warenkorb.find(item => item.id === id);
-
-  if (dishes) {
-    if (operation === 'plus') {
-      dishes.amount++;
-    }else if (operation === 'minus' && dishes.amount > 1) {
-      dishes.amount--;
+ function addToCart(name, price) {
+    let item = basketContainer.find(i => i.name === name);
+    if (item) {
+      item.amount++;
+    } else {
+      basketContainer.push({ name, price, amount: 1 });
     }
-  }
+    renderCart();
+ }
 
-  renderWarenkorb();
-}
+ function renderCart() {
+    let cartList = document.getElementById("basket-container");
+    cartList.innerHTML = "<h2>Warenkorb</h2>";
+    basketContainer.forEach((item, index) => {
+      let li = document.createElement("li");
+      li.innerHTML = `
+            ${item.name} - ${item.price}€ x ${item.amount}
+            <button onclick="changeQuantity(${index}, -1)">-</button>
+            <button onclick="changeQuantity(${index}, 1)">+</button>
+            <button onclick="removeItem(${index})">Löschen</button>
+        `;
+        cartList.appendChild(li);
+    });
+ }
 
-// Gericht aus dem Warenkorb entfernen
-function deleteBasket(id) {
-  warenkorb = warenkorb.filter(item => item.id !== id);
-  renderWarenkorb();
-}
+ function changeQuantity(index, delta) {
+  basketContainer[index].amount += delta;
+    if (basketContainer[index].amount <= 0) {
+      basketContainer.splice(index, 1);
+    }
+    renderCart();
+ }
 
-function renderBasket() {
-  let container = document.getElementById('basket-container');
-  container.innerHTML = ''; // Leeren
+ function removeItem(index) {
+  basketContainer.splice(index, 1);
+    renderCart();
+ }
 
-  warenkorb.forEach(item => {
-    let div = document.createElement('basket-container');
-    div.innerHTML = `${item.name} - ${item.amount} Stück 
-      <button onclick="changeAmount(${item.id}, 'plus')">+</button>
-      <button onclick="changeAmount(${item.id}, 'minus')">-</button>
-      <button onclick="deleteBasket(${item.id})">X</button>`;
 
-    container.appendChild(div);
-  });
-}
 
-// Local Storage
-function save() {
-  localStorage.setItem('warenkorb', JSON.stringify(warenkorb));
-}
 
-function load() {
-  let saved = localStorage.getItem('warenkorb');
-  if (saved) warenkorb = JSON.parse(saved);
-}
 
 // To Do's
 
 // Warenkorb einfügen
+// Warenkorb funktionen erstellen
 // CSS bearbeiten
 // HTML bearbeiten
-// Warenkorb funktionen erstellen
 // Local Storage einbinden
 // Footer fertig erstellen
 // Impressum / AGB erstellen für den footer
