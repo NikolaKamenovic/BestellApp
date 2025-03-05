@@ -82,7 +82,7 @@ renderCategory(AlkoholischeGetränke, 'input_AlkoholischeGetränke', titleImages
             ${item.name} - ${item.price}€ x ${item.amount}
             <button onclick="changeQuantity(${index}, -1)">-</button>
             <button onclick="changeQuantity(${index}, 1)">+</button>
-            <button onclick="removeItem(${index})">Löschen</button>
+            <button onclick="removeItem(${index})">🗑️</button>
         `;
         cartList.appendChild(li);
     });
